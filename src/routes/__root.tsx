@@ -77,22 +77,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { name: "theme-color", content: "#070A12" },
+      { title: "AIOps Course | Hands-On Artificial Intelligence for IT Operations Training" },
+      {
+        name: "description",
+        content:
+          "Join Jeevi Academy's hands-on AIOps Course. Learn observability, metrics, logs, traces, anomaly detection, event correlation, alert fatigue reduction, predictive maintenance, auto-remediation, self-healing infrastructure, and local VirtualBox labs using open-source tools.",
+      },
+      { name: "author", content: "Jeevi Academy" },
+      { property: "og:title", content: "AIOps Course | Hands-On Artificial Intelligence for IT Operations Training" },
+      {
+        property: "og:description",
+        content:
+          "Vendor-neutral AIOps course with local VirtualBox labs, Prometheus, Grafana, Python ML anomaly detection, Ansible auto-remediation, and a local LLM incident assistant.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
+      { rel: "canonical", href: "/" },
     ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
