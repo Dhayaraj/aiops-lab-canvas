@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Phone, Mail, MapPin, Zap } from "lucide-react";
+import { Phone, Mail, MapPin, Zap, Brain, TrendingUp, ArrowRight, Sparkles, BarChart3 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -584,6 +584,7 @@ function AIOpsLanding() {
         <FeesCTA />
         <FAQSection />
         <LeadForm />
+        <MarkovPredictionSection />
         <FinalCTA />
       </main>
       <Footer />
@@ -1653,6 +1654,165 @@ function Field({
   );
 }
 
+function MarkovPredictionSection() {
+  const predictionSteps = [
+    {
+      icon: BarChart3,
+      title: "Data Collection & Baselines",
+      description: "Gather historical metrics, logs, and event data to establish normal operational baselines for your infrastructure.",
+    },
+    {
+      icon: Brain,
+      title: "Markov State Modeling",
+      description: "Build state transition models that capture how your systems move between healthy, degraded, and failure states.",
+    },
+    {
+      icon: TrendingUp,
+      title: "Predictive Forecasting",
+      description: "Use transition probabilities to predict future system states, enabling proactive intervention before failures occur.",
+    },
+    {
+      icon: Sparkles,
+      title: "Automated Prevention",
+      description: "Trigger auto-remediation playbooks when Markov chains predict high probability of transitioning to failure states.",
+    },
+  ];
+
+  return (
+    <section className="max-w-7xl mx-auto px-4 lg:px-8 py-20">
+      <div className="relative overflow-hidden rounded-2xl border border-border p-8 md:p-12 bg-gradient-to-br from-slate-900 via-blue-950/80 to-card">
+        <div className="absolute inset-0 grid-bg opacity-20" />
+        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-ice/10 blur-3xl" />
+
+        <div className="relative">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/5 text-xs text-primary font-semibold mb-4">
+              <Brain className="w-3.5 h-3.5" />
+              Advanced Module
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              Markov Chain{" "}
+              <span className="text-gradient-orange">Predictive Analysis</span>{" "}
+              for IT Operations
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              Learn how Markov chain models power predictive maintenance in modern AIOps —
+              forecast system state transitions, identify degradation patterns, and prevent
+              outages before they happen.
+            </p>
+          </div>
+
+          {/* Prediction Steps */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+            {predictionSteps.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={step.title}
+                  className="relative glass-card p-5 hover:border-primary/40 transition-colors group"
+                >
+                  <div className="text-xs font-mono text-primary mb-3">
+                    0{i + 1}
+                  </div>
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                    <Icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-2">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {step.description}
+                  </p>
+                  {i < predictionSteps.length - 1 && (
+                    <div className="hidden lg:block absolute top-1/2 -right-2 w-4 h-px bg-gradient-to-r from-primary/60 to-transparent" />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Markov Visual */}
+          <div className="gradient-border-inner mb-12">
+            <div className="glass-card p-6 md:p-8">
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h3 className="text-xl font-bold mb-4">
+                    How Markov Prediction Works in AIOps
+                  </h3>
+                  <ul className="space-y-3 text-sm">
+                    {[
+                      "Define system states: Healthy → Degraded → Critical → Failed",
+                      "Calculate transition probabilities from historical incident data",
+                      "Build state transition matrices for each infrastructure component",
+                      "Predict probability of failure within next N time windows",
+                      "Trigger proactive alerts when failure probability exceeds threshold",
+                      "Integrate with Ansible playbooks for automated prevention",
+                    ].map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="text-success shrink-0">✓</span>
+                        <span className="text-muted-foreground">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-xl border border-border bg-popover/60 p-5">
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3">
+                    State Transition Probability
+                  </div>
+                  <div className="space-y-3 font-mono text-sm">
+                    {[
+                      { from: "Healthy", to: "Degraded", prob: "0.12", color: "text-warning" },
+                      { from: "Degraded", to: "Critical", prob: "0.34", color: "text-primary" },
+                      { from: "Critical", to: "Failed", prob: "0.67", color: "text-destructive" },
+                      { from: "Degraded", to: "Healthy", prob: "0.54", color: "text-success" },
+                    ].map((t) => (
+                      <div key={t.from + t.to} className="flex items-center gap-2">
+                        <span className="text-muted-foreground text-xs w-20 truncate">{t.from}</span>
+                        <span className="text-muted-foreground">→</span>
+                        <span className="text-xs w-20 truncate">{t.to}</span>
+                        <div className="flex-1 h-1.5 rounded-full bg-border overflow-hidden">
+                          <div
+                            className={`h-full rounded-full bg-gradient-to-r ${t.color === "text-destructive" ? "from-warning to-destructive" : t.color === "text-success" ? "from-primary to-success" : "from-primary/60 to-primary"}`}
+                            style={{ width: `${parseFloat(t.prob) * 100}%` }}
+                          />
+                        </div>
+                        <span className={`text-xs font-bold ${t.color}`}>{t.prob}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-4 p-3 rounded-lg border border-warning/30 bg-warning/5">
+                    <div className="text-[10px] uppercase tracking-wider text-warning mb-1">Prediction</div>
+                    <div className="text-xs text-muted-foreground">
+                      System has <span className="text-warning font-bold">67%</span> probability of transitioning from <span className="text-foreground">Critical → Failed</span> within next 30 minutes
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center">
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Want to learn Markov prediction and other advanced AIOps techniques
+              from an instructor with 15+ years of production experience?
+            </p>
+            <Link
+              to="/instructor"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-lg hover:opacity-90 transition glow-orange group"
+            >
+              Meet Your Instructor
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <p className="mt-3 text-xs text-muted-foreground">
+              Discover the story, experience & teaching philosophy behind the course
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FinalCTA() {
   return (
     <section className="max-w-7xl mx-auto px-4 lg:px-8 py-20">
@@ -1698,7 +1858,7 @@ function FinalCTA() {
 function Footer() {
   return (
     <footer className="border-t border-border bg-popover/60">
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-10 grid md:grid-cols-3 gap-8 text-sm">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-10 grid md:grid-cols-2 lg:grid-cols-5 gap-8 text-sm">
         <div>
           <div className="flex items-center gap-2">
             <img src="/favicon.ico" alt="Logo" className="w-8 h-8 object-contain" />
@@ -1713,7 +1873,7 @@ function Footer() {
           <ul className="space-y-2">
             {navLinks.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="hover:text-primary">
+                <a href={l.href} className="hover:text-primary text-muted-foreground">
                   {l.label}
                 </a>
               </li>
@@ -1721,7 +1881,25 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <div className="text-xs uppercase tracking-wider text-muted-foreground mb-3">Contact</div>
+          <div className="text-xs uppercase tracking-wider text-muted-foreground mb-3">Company</div>
+          <ul className="space-y-2 text-muted-foreground">
+            <li><a href="https://www.jeeviacademy.com/about-us/" className="hover:text-primary">About</a></li>
+            <li><a href="https://www.jeeviacademy.com/instructor/" className="hover:text-primary">Training</a></li>
+            <li><a href="https://www.jeeviacademy.com/contact-us/" className="hover:text-primary">Contact</a></li>
+            <li><a href="https://www.jeeviacademy.com/free-resources/" className="hover:text-primary">Free Resources</a></li>
+            <li><a href="https://www.jeeviacademy.com/blog/" className="hover:text-primary">Blogs</a></li>
+          </ul>
+        </div>
+        <div>
+          <div className="text-xs uppercase tracking-wider text-muted-foreground mb-3">Legal</div>
+          <ul className="space-y-2 text-muted-foreground">
+            <li><a href="https://www.jeeviacademy.com/privacy-policy/" className="hover:text-primary">Privacy Policy</a></li>
+            <li><a href="https://www.jeeviacademy.com/terms-and-conditions/" className="hover:text-primary">Terms and Condition</a></li>
+            <li><a href="https://www.jeeviacademy.com/refund-policy/" className="hover:text-primary">Refund Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <div className="text-xs uppercase tracking-wider text-muted-foreground mb-3">Contact Us</div>
           <ul className="space-y-4 text-muted-foreground">
             <li className="flex items-start gap-2">
               <Phone className="w-4 h-4 mt-0.5" /> +91 9994051212

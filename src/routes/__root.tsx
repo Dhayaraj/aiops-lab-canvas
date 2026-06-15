@@ -78,21 +78,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#070A12" },
-      { title: "AIOps Course | Hands-On Artificial Intelligence for IT Operations Training" },
+      { title: "AIOps Course in Chennai| Hands-On Artificial Intelligence for IT Operations Training" },
       {
         name: "description",
         content:
-          "Join Jeevi Academy's hands-on AIOps Course. Learn observability, metrics, logs, traces, anomaly detection, event correlation, alert fatigue reduction, predictive maintenance, auto-remediation, self-healing infrastructure, and local VirtualBox labs using open-source tools.",
+          "Jeevi Academy offers the best AIOps Course in Chennai. Learn observability, metrics, logs, traces, anomaly detection, event correlation, alert fatigue reduction, predictive maintenance, auto-remediation, self-healing infrastructure, and local VirtualBox labs using open-source tools.",
       },
       { name: "author", content: "Jeevi Academy" },
       {
         property: "og:title",
-        content: "AIOps Course | Hands-On Artificial Intelligence for IT Operations Training",
+        content: "AIOps Course in Chennai | Hands-On Artificial Intelligence for IT Operations Training",
       },
       {
         property: "og:description",
         content:
-          "Vendor-neutral AIOps course with local VirtualBox labs, Prometheus, Grafana, Python ML anomaly detection, Ansible auto-remediation, and a local LLM incident assistant.",
+          "Vendor-neutral AIOps Course with local VirtualBox labs, Prometheus, Grafana, Python ML anomaly detection, Ansible auto-remediation, and a local LLM incident assistant.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
